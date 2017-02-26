@@ -51,7 +51,7 @@
 		<div class="row">
 			<span class="col-md-1"> Σύνολο: </span>
 			<span class="col-md-7"></span>
-			<span class="col-md-1 extras"> €{{others+ticketsCost+((participants - free)*425)}} </span>
+			<span class="col-md-1 extras"> €{{total}} </span>
 		</div>
 		<hr>
 		<div class="row">
@@ -62,11 +62,11 @@
 		<hr>
 		<h2>Έσοδα</h2>
 		<hr>
-		<div class="row">
-			<span class="col-md-1"> Χωριστά: </span>
-			<span class="col-md-2"><input type="number" ng-model="adults" ng-change="updateNew()"> άτομα</span>
-			<span class="col-md-6"> Έδωσαν: € <input type="number" ng-model="adultsPay" ng-change="updateNew()"></span>
-			<span class="col-md-1"> €{{adults*adultsPay}} </span>
+		<div class="row" ng-repeat='n in indivs track by $index'>
+			<span class="col-md-2"> <a ng-click="addNew()">+</a> Χωριστά: </span>
+			<span class="col-md-2" ng-click="edit($index, 'people')"> {{n.people}} άτομα</span>
+			<span class="col-md-4" ng-click="edit($index, 'amount')"> Έδωσαν: € {{n.amount}} </span>
+			<span class="col-md-1"> €{{n.people*n.amount}} </span>
 		</div>
 		<hr>
 		<div class="row">
