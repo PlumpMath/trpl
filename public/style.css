@@ -1,0 +1,19 @@
+* {
+	margin: 30px;
+}
+
+input {
+	width:60px;
+}
+
+.extras {
+	padding-left: 75px !important;
+}
+
+input .short {
+	width: 25px;
+}
+
+strong {
+ font-size: 20px;
+}

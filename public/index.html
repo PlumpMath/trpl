@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>project</title>
+
+	<script src="angular/angular.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">
+
+</head>
+<body ng-app="march" ng-controller="mainCtrl">
+
+
+	<h1>March 2017</h1> <input type="password" ng-model="synthima" ng-change="checkpass()">
+	<hr>
+	<div ng-show=test>
+		<h2>Έξοδα</h2>
+		<hr>
+		<div class="row">
+			<span class="col-md-1">Συμμετοχές:</span>
+			<span class="col-md-1"><input type="number" ng-model="participants" ng-change="update()"></span>
+			<span class="col-md-2">*Free:<input type="number" ng-model="free" ng-change="update()"></span>
+			<span class="col-md-3">Κόστος συμμετοχής: € <input type="number" ng-model="cost" ng-change="update()"></span>
+			<span class="col-md-1 extras"> €{{(participants - free)*cost}} </span>
+		</div>
+		<hr>
+		<div class="row">
+			<span class="col-md-1"> Αεροπορικά εισητήρια: </span>
+			<span class="col-md-1">€ <input type="number" ng-model="ticketsCost" ng-change="update()"></span>
+			<span class="col-md-6"></span>
+			<span class="col-md-1"> €{{ticketsCost}} </span>
+		</div>
+		<hr>
+		<div class="row">
+			<span class="col-md-1"> Βαλίτσες: </span>
+			<span class="col-md-1"><input type="number" ng-model="numberOfSuitcases" ng-change="update()"></span>
+			<span class="col-md-1"> x </span>
+			<span class="col-md-3">€: <input type="number" ng-model="costOfSuitcase" ng-change="update()"></span>
+			<span class="col-md-1"></span>
+			<span class="col-md-1"> €{{numberOfSuitcases*costOfSuitcase}} </span>
+		</div>
+		<hr>
+		<div class="row">
+			<span class="col-md-1"> Αλλα: </span>
+			<span class="col-md-1">€ <input type="number" ng-model="others" ng-change="update()"> </span>
+			<span class="col-md-6"></span>
+			<span class="col-md-1"> €{{others}} </span>
+		</div>
+		<hr>
+		<div class="row">
+			<span class="col-md-1"> Σύνολο: </span>
+			<span class="col-md-7"></span>
+			<span class="col-md-1 extras"> €{{others+ticketsCost+((participants - free)*425)}} </span>
+		</div>
+		<hr>
+		<div class="row">
+			<span> Από τους {{participants}} συμμετέχντες οι <input class="short" type="number" ng-model="arxigoi" ng-change="update()"> δεν πληρώνουν! </span>
+			<br>
+			<span> Κόστος ανα συμμετέχοντα: <strong> €{{perPart}}</strong> </span>
+		</div>
+		<hr>
+		<h2>Έσοδα</h2>
+		<hr>
+		<div class="row">
+			<span class="col-md-1"> Χωριστά: </span>
+			<span class="col-md-2"><input type="number" ng-model="adults" ng-change="updateNew()"> άτομα</span>
+			<span class="col-md-6"> Έδωσαν: € <input type="number" ng-model="adultsPay" ng-change="updateNew()"></span>
+			<span class="col-md-1"> €{{adults*adultsPay}} </span>
+		</div>
+		<hr>
+		<div class="row">
+			<span> Κόστος ανα συμμετέχοντα: <strong> €{{perPartNew}}</strong> </span>
+		</div>
+
+	</div>
+
+
+
+
+
+	<script src="jquery/dist/jquery.min.js"></script>
+	<script src="mainController.js"></script>
+</body>
+</html>
