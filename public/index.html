@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
 
 </head>
 <body ng-app="march" ng-controller="mainCtrl">
@@ -22,59 +23,82 @@
 			<span class="col-md-1"><input type="number" ng-model="participants" ng-change="update()"></span>
 			<span class="col-md-2">*Free:<input type="number" ng-model="free" ng-change="update()"></span>
 			<span class="col-md-3">Κόστος συμμετοχής: € <input type="number" ng-model="cost" ng-change="update()"></span>
-			<span class="col-md-1 extras"> €{{(participants - free)*cost}} </span>
+			<span class="col-md-1 extraagain"> {{fees | currency:"€"}} </span>
 		</div>
 		<hr>
 		<div class="row">
 			<span class="col-md-1"> Αεροπορικά εισητήρια: </span>
 			<span class="col-md-1">€ <input type="number" ng-model="ticketsCost" ng-change="update()"></span>
 			<span class="col-md-6"></span>
-			<span class="col-md-1"> €{{ticketsCost}} </span>
+			<span class="col-md-1"> {{ticketsCost | currency:"€"}} </span>
 		</div>
 		<hr>
 		<div class="row">
 			<span class="col-md-1"> Βαλίτσες: </span>
 			<span class="col-md-1"><input type="number" ng-model="numberOfSuitcases" ng-change="update()"></span>
 			<span class="col-md-1"> x </span>
-			<span class="col-md-3">€: <input type="number" ng-model="costOfSuitcase" ng-change="update()"></span>
+			<span class="col-md-3">€ <input type="number" ng-model="costOfSuitcase" ng-change="update()"></span>
 			<span class="col-md-1"></span>
-			<span class="col-md-1"> €{{numberOfSuitcases*costOfSuitcase}} </span>
+			<span class="col-md-1 extras"> {{suitcases | currency:"€"}} </span>
 		</div>
 		<hr>
 		<div class="row">
 			<span class="col-md-1"> Αλλα: </span>
 			<span class="col-md-1">€ <input type="number" ng-model="others" ng-change="update()"> </span>
 			<span class="col-md-6"></span>
-			<span class="col-md-1"> €{{others}} </span>
+			<span class="col-md-1"> {{others | currency:"€"}} </span>
 		</div>
 		<hr>
 		<div class="row">
 			<span class="col-md-1"> Σύνολο: </span>
 			<span class="col-md-7"></span>
-			<span class="col-md-1 extras"> €{{total}} </span>
+			<span class="col-md-1"> <strong> {{total | currency:"€"}} </strong> </span>
 		</div>
 		<hr>
 		<div class="row">
 			<span> Από τους {{participants}} συμμετέχντες οι <input class="short" type="number" ng-model="arxigoi" ng-change="update()"> δεν πληρώνουν! </span>
 			<br>
-			<span> Κόστος ανα συμμετέχοντα: <strong> €{{perPart}}</strong> </span>
+			<span> Γενικό κόστος ανα συμμετέχοντα: <strong> {{perPart | currency:"€"}}</strong> </span>
 		</div>
 		<hr>
 		<h2>Έσοδα</h2>
 		<hr>
 		<div class="row" ng-repeat='n in indivs track by $index'>
-			<span class="col-md-2"> <a ng-click="addNew()">+</a> Χωριστά: </span>
+			<span class="col-md-2">
+				<a class="plusign" ng-click="addNew()">
+				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+					<span class="hovertext">Add</span>
+				</a>
+				<a class="removesign" ng-click="removeLine($index)">
+				<i class="fa fa-trash-o" aria-hidden="true"></i>
+					<span class="hovertext">Delete</span>
+				</a>
+			</span>
+			<span class="col-md-2">
+				Χωριστά:
+			</span>
 			<span class="col-md-2" ng-click="edit($index, 'people')"> {{n.people}} άτομα</span>
-			<span class="col-md-4" ng-click="edit($index, 'amount')"> Έδωσαν: € {{n.amount}} </span>
-			<span class="col-md-1"> €{{n.people*n.amount}} </span>
+			<span class="col-md-2" ng-click="edit($index, 'amount')"> Θα δώσουν: € {{n.amount}} </span>
+			<span class="col-md-1"> {{n.people*n.amount | currency:"€"}} </span>
+		</div>
+		<div class="row">
+			<span class="col-md-3"></span>
+			<span class="col-md-1">  Σύνολο: </span>
+			<span class="col-md-4"></span>
+			<span class="col-md-1"> <strong> {{total-totalNew | currency:"€"}} </strong> </span>
 		</div>
 		<hr>
-		<div class="row">
-			<span> Κόστος ανα συμμετέχοντα: <strong> €{{perPartNew}}</strong> </span>
+		<div class="row" ng-show=test2>
+			<span class="col-md-12" ng-click="addNew()"> Add another! </span>
 		</div>
 
+		<div class="row">
+			<span class="col-md-4"> Κόστος ανα συμμετέχοντα ({{ypoloipoi}}): <strong> {{perPartNew | currency:"€"}}</strong> </span>
+			<br>
+			<!-- <button class="btn btn-primary col-md-1"> Save this! </button> -->
+		</div>
 	</div>
-
+<br><br><br><br><br><br><br><br>
 
 
 
